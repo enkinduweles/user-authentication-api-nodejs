@@ -7,13 +7,13 @@ async function basicAuthentication(req: Request, res: Response, next: NextFuncti
     const authorizationHeader = req.headers['authorization'];
 
     if(!authorizationHeader) {
-      throw new ForbiddenError('Não foi possível logar na aplicação');
+      throw new ForbiddenError('Header de autorização inválido');
     }
 
     const [authenticationType, token] = authorizationHeader.split(' ');
 
     if(authenticationType !== "Basic" || !token) {
-      throw new ForbiddenError('Não foi possível logar na aplicação');
+      throw new ForbiddenError('Método de autenticação ou token inválido');
     }
 
     const tokenContent = Buffer.from(token, 'base64').toString('utf-8');
@@ -21,13 +21,13 @@ async function basicAuthentication(req: Request, res: Response, next: NextFuncti
     const [username, password] = tokenContent.split(':');
 
     if(!username || !password) {
-      throw new ForbiddenError('Não foi possível logar na aplicação');
+      throw new ForbiddenError('Usuário ou senha inválido');
     }
 
     const user = await userRepository.findUserByUsernameAndPassword({username, password});
 
     if(!user) {
-      throw new ForbiddenError('Não foi possível logar na aplicação');
+      throw new ForbiddenError('Usuário ou senha inválido');
     }
 
     req.user = user;

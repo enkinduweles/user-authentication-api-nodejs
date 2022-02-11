@@ -20,7 +20,7 @@ class UserRepository {
       SELECT uuid, username FROM application_user
       WHERE uuid = $1
     `;
-
+      
     const {rows} = await db.query<User>(query, [uuid]);
     const [user] = rows;
 
@@ -74,7 +74,12 @@ class UserRepository {
       WHERE uuid = $3
     `;
     const values = [user.username, user.password, user.uuid];
-    await db.query(query, values);
+    const {rowCount} = await db.query(query, values);
+
+    if(rowCount === 0) {
+      throw new DatabaseError("Usuário não encontrado")
+    }  
+  
   }
 
   async remove(uuid: string): Promise<void> {
@@ -84,7 +89,11 @@ class UserRepository {
     `;
     
     const values = [uuid];
-    await db.query(query, values);
+    const {rowCount} = await db.query(query, values);
+
+    if(rowCount === 0) {
+      throw new DatabaseError("Usuário não encontrado")
+    }  
   }
 
 }

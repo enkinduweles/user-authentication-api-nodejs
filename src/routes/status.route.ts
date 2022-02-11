@@ -3,7 +3,7 @@ import {Router, Request, Response, NextFunction} from 'express';
 const statusRoute = Router();
 
 statusRoute.get('/status', (req: Request, res: Response, next: NextFunction) => {
-  res.sendStatus(200);
+  res.send({status: "ok"});
 })
 
 export default statusRoute;
