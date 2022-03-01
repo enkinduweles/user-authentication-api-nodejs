@@ -1,20 +1,13 @@
 # Microsserviço para autenticação de usuários
 
-Este projeto foi desenvolvido durante o módulo de NodeJS do bootcamp **Banco Inter**, uma parceria entre [**Digital Innovation One**](https://www.dio.me/) e [**Banco Inter**](https://www.bancointer.com.br/)
+Este projeto foi desenvolvido durante o módulo de NodeJS do bootcamp **Banco Inter**, uma parceria entre **Digital Innovation One** e **Banco Inter**
 
-O projeto consiste em um micro serviço de autenticação de usuários utilizando token.
+O projeto consiste em um micro serviço de autenticação de usuários utilizando token jwt.
 
-## Objetivos
-
-- Configurar a aplicação utilizando o typescript
-- Configurar um banco de dados SQL - Postgre
-- Definir rotas utilizando o padrão REST
-- Implementar autenticação Basic
-- Implementar autenticação Bearer
-  
 ## Rotas
 
 ### **Usuários**
+
 ```
 GET /users
 
@@ -28,8 +21,23 @@ DELETE /users/:uuid
 ```
 
 ### **Autenticação**
+
 ```
 POST /token
 
 POST /token/validate
 ```
+
+## Ferramentas
+
+[typescript](https://www.typescriptlang.org/)
+
+[ts-node-dev](https://www.npmjs.com/package/ts-node-dev)
+
+[express](https://expressjs.com/)
+
+[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+
+[dotenv](https://www.npmjs.com/package/dotenv)
+
+[node-postgres-pg](https://node-postgres.com/)
